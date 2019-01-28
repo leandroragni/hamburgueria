@@ -11,11 +11,6 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
+Route::get('/', 'CardapioController@redirecionarIndex');
 Route::get('/cardapio', 'CardapioController@index');
 Route::post('/enviar/pedido', 'PedidoController@enviarPedido');
-Route::get('/editar/pedido/{id}', 'PedidoController@editarPedido');
-

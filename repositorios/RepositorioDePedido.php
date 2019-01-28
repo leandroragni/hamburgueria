@@ -15,6 +15,11 @@ class RepositorioDePedido
 		$this->model = $pedido;
 	}
 
+    public function recuperarTodosPedidos()
+    {
+        return $this->model::all();
+    }
+
 	public function recuperarItensDoCardapio(int $idPedido)
     {
         return $this->model::findById($idPedido);

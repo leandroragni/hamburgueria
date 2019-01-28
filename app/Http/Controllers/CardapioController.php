@@ -18,6 +18,11 @@ class CardapioController extends Controller
         $this->servicoDeEndereco = $servicoDeEndereco;
     }
 
+    public function redirecionarIndex()
+    {
+        return redirect('cardapio');
+    }
+
     public function index()
     {
         $itensCardapio = $this->servicoDeCardapio->obtemItensDoCardapio();
@@ -28,5 +33,26 @@ class CardapioController extends Controller
         	'itens' => $itensCardapio,
         	'enderecos' => $enderecosDeEntrega,
         ]);
+    }
+
+    public function apiIndex(int $clienteId)
+    {
+        $itensCardapio = $this->servicoDeCardapio->obtemItensDoCardapio();
+
+        $enderecosDeEntrega = $this->servicoDeEndereco->obtemEnderecosDoCliente($clienteId);
+
+        return [
+            'itens' => $itensCardapio,
+            'enderecos' => $enderecosDeEntrega,
+        ];
+    }
+
+    public function exibirCardapio()
+    {
+        $itensCardapio = $this->servicoDeCardapio->obtemItensDoCardapio();
+
+        return [
+            'itens' => $itensCardapio,
+        ];
     }
 }

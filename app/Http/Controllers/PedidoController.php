@@ -12,6 +12,11 @@ class PedidoController extends Controller
         $this->servicoDePedido = $servicoDePedido;
     }
 
+    public function obterTodosPedidos()
+    {
+        return $this->servicoDePedido->obterTodosPedidos();
+    }
+
     public function pedidosCliente(int $clienteId)
     {
         return $this->servicoDePedido->obtemPedidos($clienteId);

@@ -17,6 +17,11 @@ class ServicoDePedido
 		$this->repositorioDePedido = $repositorioDePedido;
 	}
 
+	public function obterTodosPedidos()
+	{
+		return $this->repositorioDePedido->recuperarTodosPedidos();
+	}
+
 	public function persistirPedido(array $pedido)
 	{
 		$pedido = $this->removeItensInvalidosDoPedido($pedido);

@@ -18,4 +18,25 @@ class RepositorioDeEndereco
     {
         return $this->model->where('id_cliente', $clienteId)->get();
     }
+
+    public function recuperarEnderecoPorId(int $enderecoId)
+    {
+    	return $this->model->where('id', $enderecoId)->get();
+    }
+
+    public function recuperarUltimoEnderecoDoCliente(int $clienteId)
+    {
+    	return $this->model->where('id_cliente', $clienteId)->orderBy('created_at', 'desc')->first();
+    }
+
+    public function persistirEndereco(array $endereco)
+    {
+    	$enderecoPersistido = $this->model->create($endereco);
+
+    	if ($enderecoPersistido) {
+    		return $enderecoPersistido;
+    	}
+
+    	return null;
+    }
 }
