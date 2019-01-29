@@ -9,4 +9,5 @@ class StatusDoPedido
 	const CONFIRMADO = 3;
 	const EM_PREPARACAO = 4;
 	const EM_ENTREGA = 5;
+	const ENTREGUE = 6;
 }

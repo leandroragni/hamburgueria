@@ -47,4 +47,19 @@ class PedidoController extends Controller
             'pedido' => $pedido,
         ]);
     }
+
+    public function exibirPedidosEmAberto()
+    {
+        return $this->servicoDePedido->obterPedidosAbertos();
+    }
+
+    public function atualizarStatusDoPedido(Request $request)
+    {
+        return $this->servicoDePedido->atualizarStatusDoPedido($request->get('pedido_id'), $request->get('status'));
+    }
+
+    public function alterarPedido(Request $request)
+    {
+        return $this->servicoDePedido->alterarPedido($request->all());
+    }
 }

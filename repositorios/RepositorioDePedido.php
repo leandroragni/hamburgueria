@@ -38,19 +38,18 @@ class RepositorioDePedido
         return false;
     }
 
-    public function atualizarStatusDoPedido(int $idPedido, $status)
+    public function atualizarStatusDoPedido(Pedido $pedido)
     {
-    	return $this->model->update(
-    		[
-    			'id' => "$idPedido",
-    			'status' => $status,
-    		]
-    	);
+    	if ($pedido->save()) {
+            return 'Status do pedido atualizado!';
+        };
+
+        return $pedido;
     }
 
     public function recuperarPedidoPorId(int $id)
     {
-        return $this->model->where('id', $id)->with('itens')->get();
+        return $this->model->where('id', $id)->with('itens')->first();
     }
 
     public function recuperarPedidoEditavel(int $id)
@@ -76,5 +75,10 @@ class RepositorioDePedido
     public function recuperarPedidosPorCliente(int $idCliente)
     {
         return $this->model->where('id_cliente', $idCliente)->with('itens')->get();
+    }
+
+    public function recuperarPedidosAbertos()
+    {
+        return $this->model->where('status', '!=', StatusDoPedido::ENTREGUE)->get();
     }
 }

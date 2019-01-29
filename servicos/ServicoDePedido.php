@@ -114,4 +114,66 @@ class ServicoDePedido
 	{
 		return $itensDoPedido->sum('preco_total_item');
 	}
+
+	public function obterPedidosAbertos()
+	{
+		return $this->repositorioDePedido->recuperarPedidosAbertos();
+	}
+
+	public function atualizarStatusDoPedido(int $pedidoId, int $status)
+	{
+		if (!$this->statusValido($status)) {
+			return 'Status inválido!';
+		}
+
+		$pedido = $this->repositorioDePedido->recuperarPedidoPorId($pedidoId);
+
+		if ($pedido) {
+
+			$pedido->status = $status;
+
+			return $this->repositorioDePedido->atualizarStatusDoPedido($pedido);
+		}
+
+		return 'Pedido inválido!';
+	}
+
+	private function statusValido(int $status)
+	{
+		if (in_array($status, [
+			StatusDoPedido::REALIZADO,
+			StatusDoPedido::ALTERADO,
+			StatusDoPedido::CONFIRMADO,
+			StatusDoPedido::EM_PREPARACAO,
+			StatusDoPedido::EM_ENTREGA,
+			StatusDoPedido::ENTREGUE,
+		])) {
+			return true;
+		}
+
+		return false;
+	}
+
+	public function alterarPedido(array $pedido)
+	{
+		$pedidoExistente = $this->repositorioDePedido->recuperarPedidoPorId($pedido['id']);
+
+		if ($pedidoExistente && !$this->pedidoEmPreparacao($pedidoExistente->status) && $this->statusValido($pedido['status'])) {
+			$pedidoExistente->status = StatusDoPedido::ALTERADO;
+			$pedidoAlterado = $this->repositorioDePedido->atualizarStatusDoPedido($pedidoExistente);
+
+			return $this->persistirPedido($pedido);
+		}
+
+		return 'Falha ao atualizar pedido!';
+	}
+
+	private function pedidoEmPreparacao($status)
+	{
+		if ($status == StatusDoPedido::EM_PREPARACAO) {
+			return true;
+		}
+
+		return false;
+	}
 }
