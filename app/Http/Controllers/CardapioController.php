@@ -47,6 +47,11 @@ class CardapioController extends Controller
         ];
     }
 
+    public function cadastrar(Request $request)
+    {
+        return $this->servicoDeCardapio->cadastrarItem($request->all());
+    }
+
     public function exibirCardapio()
     {
         $itensCardapio = $this->servicoDeCardapio->obtemItensDoCardapio();

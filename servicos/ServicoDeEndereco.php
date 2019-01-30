@@ -44,14 +44,14 @@ class ServicoDeEndereco
 
 	public function cadastrarEndereco(array $endereco)
 	{
-		if ($this->clienteEstaCadastrado($endereco['clienteId'])) {
+		if ($this->clienteEstaCadastrado($endereco['id_cliente'])) {
 			return $this->repositorioDeEndereco->persistirEndereco($endereco);
 		}
 
 		return false;
 	}
 
-	private function clienteEstaCadastrado(int $clineteId)
+	private function clienteEstaCadastrado(int $clienteId)
 	{
 		$cliente = $this->repositorioDeCliente->recuperarClientePorId($clienteId);
 

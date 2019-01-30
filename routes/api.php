@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 
 Route::get('/cardapio', 'CardapioController@exibirCardapio');
 Route::get('/cardapio/{clienteId}', 'CardapioController@apiIndex')->where('clienteId', '[+-]?[0-9]{1,10}');
+Route::post('/cardapio', 'CardapioController@cadastrar');
 
 Route::get('/clientes', 'ClienteController@obterTodosClientes');
 Route::get('/cliente/{id}', 'ClienteController@obterCliente')->where('id', '[+-]?[0-9]{1,10}');

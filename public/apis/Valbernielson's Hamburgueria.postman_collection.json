@@ -1,0 +1,426 @@
+{
+	"info": {
+		"_postman_id": "d7b1c248-d5b0-4fad-95c7-85fb685d03f2",
+		"name": "Valbernielson's Hamburgueria",
+		"description": "Projeto para processo seletivo Dsin",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"_postman_id": "7fc4d248-4021-4b4a-9ebe-20774d36568e",
+			"name": "cliente",
+			"item": [
+				{
+					"_postman_id": "2128fbe8-7524-4434-b024-e99cd2e7a67e",
+					"name": "Recuperar todos clientes",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://dsin.test/api/clientes",
+							"protocol": "http",
+							"host": [
+								"dsin",
+								"test"
+							],
+							"path": [
+								"api",
+								"clientes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"_postman_id": "4abca81d-c2ac-40f7-abc5-a916f8870bdb",
+					"name": "Recuperar cliente por id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://dsin.test/api/cliente/2",
+							"protocol": "http",
+							"host": [
+								"dsin",
+								"test"
+							],
+							"path": [
+								"api",
+								"cliente",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"_postman_id": "18b22ee0-a519-42a3-a800-a7f63353ea95",
+					"name": "Cadastro de cliente",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"nome\": \"Cliente Api UM\",\n\t\"email\": \"clienteapi@teste.com\",\n\t\"cpf\": \"123.444.555-77\"\n}"
+						},
+						"url": {
+							"raw": "http://dsin.test/api/cliente",
+							"protocol": "http",
+							"host": [
+								"dsin",
+								"test"
+							],
+							"path": [
+								"api",
+								"cliente"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"_postman_id": "20b012bb-dd25-49f7-8f8d-c7634b8eae32",
+			"name": "endereco",
+			"item": [
+				{
+					"_postman_id": "8592c91b-a123-46fe-bcc5-6dc1418d54ff",
+					"name": "Recuperar endereco por id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://dsin.test/api/endereco/1",
+							"protocol": "http",
+							"host": [
+								"dsin",
+								"test"
+							],
+							"path": [
+								"api",
+								"endereco",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"_postman_id": "6e2910e2-badd-401c-9a34-e4bda60f59d4",
+					"name": "Recuperar enderecos do cliente",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://dsin.test/api/endereco/cliente/1",
+							"protocol": "http",
+							"host": [
+								"dsin",
+								"test"
+							],
+							"path": [
+								"api",
+								"endereco",
+								"cliente",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"_postman_id": "ac3c7e82-7829-4088-9eda-f7c659ad91bf",
+					"name": "Recuperar ultimo endereco cadastrado por cliente id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://dsin.test/api/endereco/ultimo/cliente/1",
+							"protocol": "http",
+							"host": [
+								"dsin",
+								"test"
+							],
+							"path": [
+								"api",
+								"endereco",
+								"ultimo",
+								"cliente",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"_postman_id": "39543fdc-c824-44df-90f4-33aa89bc2c88",
+					"name": "Cadastrar endereco",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"id_cliente\": 1,\n\t\"rua\": \"Rua do cliente\",\n\t\"bairro\": \"Bairro do cliente\",\n\t\"numero\": \"Número do cliente\",\n\t\"cep\": \"12345-123\",\n\t\"cidade\": \"cidade\"\n}"
+						},
+						"url": {
+							"raw": "http://dsin.test/api/endereco",
+							"protocol": "http",
+							"host": [
+								"dsin",
+								"test"
+							],
+							"path": [
+								"api",
+								"endereco"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"_postman_id": "6d39995f-725c-4806-b555-9116596b3d31",
+			"name": "cardapio",
+			"item": [
+				{
+					"_postman_id": "2059c5f2-68b3-4017-973f-cde56dcf1d57",
+					"name": "Exibir cardapio para o cliente cadastrado",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://dsin.test/api/cardapio/1",
+							"protocol": "http",
+							"host": [
+								"dsin",
+								"test"
+							],
+							"path": [
+								"api",
+								"cardapio",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"_postman_id": "eb4d4ad3-aa1f-4c9b-abe5-e06eb464390b",
+					"name": "Exibir cardapio",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://dsin.test/api/cardapio",
+							"protocol": "http",
+							"host": [
+								"dsin",
+								"test"
+							],
+							"path": [
+								"api",
+								"cardapio"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"_postman_id": "dc6a9027-653e-4c74-8972-9d486ff7576d",
+					"name": "Cadastrar item no cardapio",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"nome\": \"X-SALADA-MILHO\",\n\t\"descricao\": \"Pão, hamburguer, milho, alface e tomate \",\n\t\"preco\": \"11\",\n\t\"imagem\": \"public/xsaladamilho.png\"\n}"
+						},
+						"url": {
+							"raw": "http://dsin.test/api/cardapio",
+							"protocol": "http",
+							"host": [
+								"dsin",
+								"test"
+							],
+							"path": [
+								"api",
+								"cardapio"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"_postman_id": "5f901e74-c5cc-4039-a2b9-3b9ce9a45c40",
+			"name": "pedido",
+			"item": [
+				{
+					"_postman_id": "3124299f-ac7b-44e3-8a1f-1f207901559e",
+					"name": "Visualizar todos os pedidos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://dsin.test/api/pedidos",
+							"protocol": "http",
+							"host": [
+								"dsin",
+								"test"
+							],
+							"path": [
+								"api",
+								"pedidos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"_postman_id": "5829eff5-6a9b-4356-8884-6dd85b877b8c",
+					"name": "Recuperar pedidos abertos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://dsin.test/api/pedidos/abertos",
+							"protocol": "http",
+							"host": [
+								"dsin",
+								"test"
+							],
+							"path": [
+								"api",
+								"pedidos",
+								"abertos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"_postman_id": "086bf7bf-2fb3-43b9-8ab1-0f2ea662f33f",
+					"name": "Enviar pedido",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"item_id\": [\"1\",\"2\",\"3\",\"4\",\"5\"],\n\t\"quantidade\": [\"2\",\"1\",\"1\",\"1\",\"1\"],\n\t\"endereco_id\": \"1\",\n\t\"cliente_id\": \"1\"\n}"
+						},
+						"url": {
+							"raw": "http://dsin.test/api/enviar/pedido",
+							"protocol": "http",
+							"host": [
+								"dsin",
+								"test"
+							],
+							"path": [
+								"api",
+								"enviar",
+								"pedido"
+							]
+						},
+						"description": "item_id: array de ids existentes no cardápio;\n\nquantidade: é a quantidade respetivamente de opções do cardápio que são escolhidas, utilizar null para os itens que não serão adicionados ao pedido."
+					},
+					"response": []
+				},
+				{
+					"_postman_id": "84322f11-b8b7-4ad2-94e2-3103ea755d6c",
+					"name": "Atualizar status do pedido",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"status\": \"4\",\n\t\"pedido_id\": \"34\"\n}"
+						},
+						"url": {
+							"raw": "http://dsin.test/api/pedidos/status/atualizar",
+							"protocol": "http",
+							"host": [
+								"dsin",
+								"test"
+							],
+							"path": [
+								"api",
+								"pedidos",
+								"status",
+								"atualizar"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"_postman_id": "db99ba5b-aa52-410e-92d7-fdef628f5de1",
+					"name": "Editar pedido",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"pedido_id\": 41,\n\t\"item_id\": [\"1\",\"2\",\"3\",\"4\",\"5\"],\n\t\"quantidade\": [\"20\",\"80\",\"1\",\"10\",\"1\"],\n\t\"endereco_id\": \"1\",\n\t\"cliente_id\": \"1\"\n}"
+						},
+						"url": {
+							"raw": "http://dsin.test/api/editar/pedido",
+							"protocol": "http",
+							"host": [
+								"dsin",
+								"test"
+							],
+							"path": [
+								"api",
+								"editar",
+								"pedido"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

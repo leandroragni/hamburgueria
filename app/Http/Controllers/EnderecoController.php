@@ -31,6 +31,6 @@ class EnderecoController extends Controller
 
     public function cadastrar(Request $request)
     {
-        return $this->servicoDeEndereco->cadastrar($request->all());
+        return $this->servicoDeEndereco->cadastrarEndereco($request->all());
     }
 }

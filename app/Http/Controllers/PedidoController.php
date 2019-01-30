@@ -33,10 +33,10 @@ class PedidoController extends Controller
 
         $infoPedido = $this->servicoDePedido->persistirPedido($pedido);
 
-    	return view('pedido.confirmacao', [
+    	return [
             'pedido' => $infoPedido['pedido_realizado'],
             'id_pedido' => $infoPedido['id_pedido'],
-        ]);
+        ];
     }
 
     public function editarPedido(int $id)
@@ -60,6 +60,14 @@ class PedidoController extends Controller
 
     public function alterarPedido(Request $request)
     {
-        return $this->servicoDePedido->alterarPedido($request->all());
+        $pedido = [
+            'pedido_id' => $request->get('pedido_id'),
+            'ids' => $request->get('item_id'),
+            'quantidade' => $request->get('quantidade'),
+            'clienteId' => $request->get('cliente_id'),
+            'enderecoId' => $request->get('endereco_id'),
+        ];
+
+        return $this->servicoDePedido->alterarPedido($pedido);
     }
 }

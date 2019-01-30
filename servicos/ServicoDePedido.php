@@ -156,13 +156,18 @@ class ServicoDePedido
 
 	public function alterarPedido(array $pedido)
 	{
-		$pedidoExistente = $this->repositorioDePedido->recuperarPedidoPorId($pedido['id']);
+		$pedidoExistente = $this->repositorioDePedido->recuperarPedidoPorId($pedido['pedido_id']);
 
-		if ($pedidoExistente && !$this->pedidoEmPreparacao($pedidoExistente->status) && $this->statusValido($pedido['status'])) {
-			$pedidoExistente->status = StatusDoPedido::ALTERADO;
-			$pedidoAlterado = $this->repositorioDePedido->atualizarStatusDoPedido($pedidoExistente);
+		if ($pedidoExistente && !$this->pedidoEmPreparacao($pedidoExistente->status)) {
+			$novoPedido = $this->persistirPedido($pedido);
 
-			return $this->persistirPedido($pedido);
+			if ($novoPedido) {
+				$pedidoExistente->status = StatusDoPedido::ALTERADO;
+				$pedidoExistente->informacoes = $this->obterInfoAlteracaoPedido($pedidoExistente->id, $novoPedido['id_pedido']);
+				$pedidoAlterado = $this->repositorioDePedido->atualizarStatusDoPedido($pedidoExistente);
+
+				return $novoPedido;
+			}
 		}
 
 		return 'Falha ao atualizar pedido!';
@@ -175,5 +180,16 @@ class ServicoDePedido
 		}
 
 		return false;
+	}
+
+	private function obterInfoAlteracaoPedido(int $pedidoAlteradoId, int $novoPedidoId)
+	{
+		$informacoes = [
+			'pedido_alterado_id' => $pedidoAlteradoId,
+			'novo_pedido_id' => $novoPedidoId,
+			'info' => "O pedido id: $pedidoAlteradoId foi alterado para o pedido: $novoPedidoId",
+		];
+
+		return json_encode($informacoes);
 	}
 }

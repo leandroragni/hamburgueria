@@ -14,6 +14,11 @@ class RepositorioDeCardapio
 		$this->model = $cardapio;
 	}
 
+    public function persistirItem(array $item)
+    {
+        return $this->model->create($item);
+    }
+
 	public function recuperarTodosItensDoCardapio()
     {
         return $this->model::all();

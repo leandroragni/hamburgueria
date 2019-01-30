@@ -12,6 +12,11 @@ class ServicoDeCardapio
 		$this->repositorioDeCardapio = $repositorioDeCardapio;
 	}
 
+	public function cadastrarItem(array $item)
+	{
+		return $this->repositorioDeCardapio->persistirItem($item);
+	}
+
 	public function obtemItensDoCardapio()
 	{
 		return $this->repositorioDeCardapio->recuperarTodosItensDoCardapio();
